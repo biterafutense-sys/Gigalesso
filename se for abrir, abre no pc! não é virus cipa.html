@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desculpa</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Anton&family=Teko:wght@400;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0f1923;
+            background-image: 
+                linear-gradient(135deg, #0f1923 25%, #1a242e 25%, #1a242e 50%, #0f1923 50%, #0f1923 75%, #1a242e 75%, #1a242e 100%);
+            background-size: 40px 40px;
+            font-family: 'Teko', sans-serif;
+            color: #ece8e1;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .container {
+            background: rgba(15, 25, 35, 0.95);
+            border: 2px solid #ff4655;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(255, 70, 85, 0.3);
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            min-height: 400px;
+        }
+
+        .tag {
+            background: #ff4655;
+            color: #0f1923;
+            display: inline-block;
+            padding: 5px 15px;
+            font-family: 'Anton', sans-serif;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        h1 {
+            font-family: 'Anton', sans-serif;
+            font-size: 3rem;
+            color: #ff4655;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .subtexto {
+            font-size: 1.5rem;
+            color: #ece8e1;
+            margin-bottom: 2rem;
+            line-height: 1.4;
+        }
+
+        .botoes {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            font-family: 'Anton', sans-serif;
+            font-size: 1.2rem;
+            padding: 12px 30px;
+            border: 2px solid #ff4655;
+            background: #ff4655;
+            color: #ece8e1;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background: #ece8e1;
+            color: #ff4655;
+            transform: scale(1.05);
+        }
+
+        #btnRecusar {
+            position: relative; 
+        }
+
+        .container.final {
+            display: none;
+        }
+
+        .container.final.ativo {
+            display: block;
+        }
+
+        .container.inicial.sumir {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container inicial" id="containerInicial">
+        <div class="tag">alt f4 n vale</div>
+        <h1>c aceita o perdão?</h1>
+        
+        <!-- Gi, c aceita me perdoar? -->
+        <p class="subtexto" id="mensagem">
+            sei que errei feiasso memo, não to na intenção de negar nem nada<br>
+            eu só quero uma chance pra pelo menos falar com você, nem que seja uma ultima vez, sinto muita saudade de você, muita mesmo!<br><br>
+        </p>
+
+        <div class="botoes">
+            <button class="btn" id="btnAceitar" onclick="aceitou()">Aceitar</button>
+            <button class="btn" id="btnRecusar" onclick="fugir()">Recusar</button>
+        </div>
+    </div>
+
+    <div class="container final" id="containerFinal">
+        <div class="tag">desculpa.</div>
+        <h1>se descontraiu, ja ta valendo</h1>
+        
+        <!-- TROCA ESSA MENSAGEM AQUI TAMBÉM -->
+        <p class="subtexto">
+            se isso amolecer um pouquinho seu coração, ja fico muito feliz!!! me manda mensagem, eu sei o quanto eu errei e só quero me entender contigo. <br>
+            só de saber que entrou ja fico feliz KKKKK! pensa com carinho s2<br><br>
+    </div>
+
+    <script>
+        function aceitou() {
+            document.getElementById('containerInicial').classList.add('sumir');
+            document.getElementById('containerFinal').classList.add('ativo');
+        }
+
+        function fugir() {
+            let btn = document.getElementById('btnRecusar');
+            let container = document.querySelector('.container.inicial');
+
+            let maxX = container.clientWidth - btn.offsetWidth - 20;
+            let maxY = container.clientHeight - btn.offsetHeight - 20;
+
+            let randomX = Math.floor(Math.random() * maxX);
+            let randomY = Math.floor(Math.random() * maxY);
+
+            btn.style.position = 'absolute';
+            btn.style.left = randomX + 'px';
+            btn.style.top = randomY + 'px';
+        }
+    </script>
+</body>
+</html>
